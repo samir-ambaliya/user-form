@@ -1,0 +1,52 @@
+<div class="main-container">
+    <form [formGroup]="form" class="form-container" (ngSubmit)="onSubmit()">
+        <div formArrayName="entries">
+            <div *ngFor="let entry of entriesControls  ; let i = index" class="entry my-3">
+                <div [formGroupName]="i">
+                    <mat-form-field class="mx-1">
+                        <mat-label>Enter Name</mat-label>
+                        <input type="text" formControlName="name" required matInput #input maxlength="10"
+                            placeholder="Ex. Roy">
+                    </mat-form-field>
+
+                    <mat-form-field class="mx-1">
+                        <mat-label>Enter Email</mat-label>
+                        <input type="email" formControlName="email" required matInput #input
+                            placeholder="Ex. Roy@gmail.com">
+                    </mat-form-field>
+
+                    <mat-form-field class="mx-1">
+                        <mat-label>Phone Number:</mat-label>
+                        <input type="text" formControlName="phoneNumber" required matInput #input maxlength="10">
+                    </mat-form-field>
+
+                    <mat-form-field class="example-chip-list mx-1">
+                        <mat-chip-grid #chipGrid aria-label="Gender selection">
+                            <mat-chip-row *ngFor="let gender of genders" (removed)="remove(gender)">
+                                {{gender}}
+                                <button matChipRemove [attr.aria-label]="'remove ' + gender">
+                                    <mat-icon>cancel</mat-icon>
+                                </button>
+                            </mat-chip-row>
+                        </mat-chip-grid>
+                        <input placeholder="Enter Gender" formControlName="gender" #genderInput
+                            [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                            (matChipInputTokenEnd)="add($event,i)" />
+                        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                            <mat-option *ngFor="let gender of filteredGenders | async" [value]="gender">
+                                {{gender}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                    <button class="btn btn-danger mx-4" type="button" (click)="removeEntry(i)">Remove</button>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-success mx-4" type="button" (click)="addEntry()">Add</button>
+            <button class="btn btn-primary mx-4" type="submit">Submit</button>
+        </div>
+    </form>
+
+</div>
