@@ -12,11 +12,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { UserStringDirective } from './user-form/custom-directive/user-string.directive';
+import { TemplateSwitchDirective } from './user-form/custom-directive/template-switch.directive';
+import { UserDirectiveComponent } from './user-directive/user-directive.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserFormComponent
+    UserFormComponent,
+    UserStringDirective,
+    TemplateSwitchDirective,
+    UserDirectiveComponent
   ],
   imports: [
     BrowserModule,
