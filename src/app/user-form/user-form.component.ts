@@ -16,8 +16,8 @@ export class UserFormComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   genderCtrl = new FormControl('');
   filteredGenders: Observable<string[]> | undefined;
-  genders: string[] = ['Male'];
-  allGenders: string[] = ['Female','Other'];
+  genders: string[] = [];
+  allGenders: string[] = ['Female','Other' ,'male'];
   @ViewChild('genderInput') genderInput!: ElementRef<HTMLInputElement>;
 
   announcer = inject(LiveAnnouncer);
@@ -58,8 +58,13 @@ export class UserFormComponent implements OnInit {
   }
 
   onSubmit() {
+    if(this.form.valid){
       const formData = this.form.value.entries;
       console.log(formData);
+      alert('form is successfully submited')
+    }else{
+      alert('Enter Valid Details')
+    }
    
   }
 

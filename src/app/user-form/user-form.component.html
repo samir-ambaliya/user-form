@@ -21,17 +21,27 @@
                         <mat-label>Enter Name</mat-label>
                         <input type="text" formControlName="name" required matInput #input maxlength="10"
                             placeholder="Ex. Roy">
+                        <mat-error>
+                            <div>Name is required.</div>
+                        </mat-error>
+
                     </mat-form-field>
 
                     <mat-form-field class="mx-1">
                         <mat-label>Enter Email</mat-label>
                         <input type="email" formControlName="email" required matInput #input
                             placeholder="Ex. Roy@gmail.com">
+                        <mat-error>
+                            <div>Email should not be empty </div>
+                        </mat-error>
                     </mat-form-field>
 
                     <mat-form-field class="mx-1">
                         <mat-label>Phone Number:</mat-label>
                         <input type="text" formControlName="phoneNumber" required matInput #input maxlength="10">
+                        <mat-error>
+                            <div>Phone No. should not be empty </div>
+                        </mat-error>
                     </mat-form-field>
 
                     <mat-form-field class="example-chip-list mx-1">
@@ -43,9 +53,8 @@
                                 </button>
                             </mat-chip-row>
                         </mat-chip-grid>
-                        <input placeholder="Enter Gender" formControlName="gender" #genderInput
-                            [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
-                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        <input formControlName="gender" #genderInput [matChipInputFor]="chipGrid"
+                            [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                             (matChipInputTokenEnd)="add($event,i)" />
                         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
                             <mat-option *ngFor="let gender of filteredGenders | async" [value]="gender">
