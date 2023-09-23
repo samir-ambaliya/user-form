@@ -46,7 +46,9 @@
 
                     <mat-form-field class="example-chip-list mx-1">
                         <mat-chip-grid #chipGrid aria-label="Gender selection">
-                            <mat-chip-row *ngFor="let gender of genders" (removed)="remove(gender)">
+                            <mat-chip-row *ngFor="let gender of genders"
+                                [ngClass]="{'male-chip': gender === 'Male', 'female-chip': gender === 'Female'}"
+                                (removed)="remove(gender)">
                                 {{gender}}
                                 <button matChipRemove [attr.aria-label]="'remove ' + gender">
                                     <mat-icon>cancel</mat-icon>

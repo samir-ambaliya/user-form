@@ -17,7 +17,7 @@ export class UserFormComponent implements OnInit {
   genderCtrl = new FormControl('');
   filteredGenders: Observable<string[]> | undefined;
   genders: string[] = [];
-  allGenders: string[] = ['Female','Other' ,'male'];
+  allGenders: string[] = ['Female','Other' ,'Male'];
   @ViewChild('genderInput') genderInput!: ElementRef<HTMLInputElement>;
 
   announcer = inject(LiveAnnouncer);
@@ -40,7 +40,7 @@ export class UserFormComponent implements OnInit {
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', Validators.required], 
-      gender: [''] 
+       gender: [''] 
     });
   }
 
@@ -56,7 +56,6 @@ export class UserFormComponent implements OnInit {
   get entriesControls(): AbstractControl[] {
     return (this.form.get('entries') as FormArray).controls;  
   }
-
   onSubmit() {
     if(this.form.valid){
       const formData = this.form.value.entries;
@@ -67,9 +66,6 @@ export class UserFormComponent implements OnInit {
     }
    
   }
-
-
-
   add(event: MatChipInputEvent, index: number): void {
     const value = (event.value || '').trim();
   
