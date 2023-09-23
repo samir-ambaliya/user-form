@@ -16,6 +16,7 @@ export class UserFormComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   genderCtrl = new FormControl('');
   filteredGenders: Observable<string[]> | undefined;
+  genderSelected: boolean = false;
   genders: string[] = [];
   allGenders: string[] = ['Female','Other' ,'Male'];
   @ViewChild('genderInput') genderInput!: ElementRef<HTMLInputElement>;
@@ -40,14 +41,15 @@ export class UserFormComponent implements OnInit {
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', Validators.required], 
-       gender: [''] 
+       gender: ['']
     });
   }
 
-  addEntry() {
-    const entriesArray = this.form.get('entries') as FormArray;
-    entriesArray.push(this.createEntry());
-  }
+    addEntry() {
+      const entriesArray = this.form.get('entries') as FormArray;
+      entriesArray.push(this.createEntry());
+      this.addFreshGenderFields()
+    }
 
   removeEntry(index: number) {
     const entriesArray = this.form.get('entries') as FormArray;
@@ -94,6 +96,8 @@ export class UserFormComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.genders.push(event.option.viewValue);
+    const resultArray = this.allGenders.filter(item => !this.genders.includes(item));
+    this.allGenders=[...resultArray]
     this.genderInput.nativeElement.value = '';
     this.genderCtrl.setValue(null);
   }
@@ -102,6 +106,8 @@ export class UserFormComponent implements OnInit {
     const filterValue = value.toLowerCase();
 
     return this.allGenders.filter(fruit => fruit.toLowerCase().includes(filterValue));
+  }
+  addFreshGenderFields() {
   }
 
 }
