@@ -20,8 +20,7 @@ export class UserFormComponent implements OnInit {
   genders: string[] = [];
   allGenders: string[] = ['Female','Other' ,'Male'];
   @ViewChild('genderInput') genderInput!: ElementRef<HTMLInputElement>;
-
-  announcer = inject(LiveAnnouncer);
+   announcer = inject(LiveAnnouncer);
 
   constructor(private fb:FormBuilder){
     this.form = this.fb.group({
@@ -30,11 +29,7 @@ export class UserFormComponent implements OnInit {
    
   }
   ngOnInit(): void {
-    this.filteredGenders = this.genderCtrl.valueChanges.pipe(
-      startWith(null),
-      map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allGenders.slice())),
-    );
-   
+ 
   }
   createEntry(): FormGroup {
     return this.fb.group({
@@ -45,23 +40,23 @@ export class UserFormComponent implements OnInit {
     });
   }
 
-    addEntry() {
-      const entriesArray = this.form.get('entries') as FormArray;
-      entriesArray.push(this.createEntry());
-      this.addFreshGenderFields()
+  addEntry() {
+    const entriesArray = this.form.get('entries') as FormArray;
+    entriesArray.push(this.createEntry());
     }
 
   removeEntry(index: number) {
     const entriesArray = this.form.get('entries') as FormArray;
     entriesArray.removeAt(index);
   }
+
   get entriesControls(): AbstractControl[] {
     return (this.form.get('entries') as FormArray).controls;  
   }
+
   onSubmit() {
     if(this.form.valid){
       const formData = this.form.value.entries;
-      console.log(formData);
       alert('form is successfully submited')
     }else{
       alert('Enter Valid Details')
@@ -72,8 +67,7 @@ export class UserFormComponent implements OnInit {
     const value = (event.value || '').trim();
   
     if (value) {
-      this.genders.push(value);
-  
+      this.genders.push(value);  
       const genderFormControl = this.entriesControls[index].get('gender') as FormControl;
       const updatedGenderArray = [...genderFormControl.value, value];
       genderFormControl.setValue(updatedGenderArray);
@@ -85,14 +79,12 @@ export class UserFormComponent implements OnInit {
 
   remove(gender: string): void {
     const index = this.genders.indexOf(gender);
-
+    this.allGenders.push(this.genders[index]=gender)
     if (index >= 0) {
       this.genders.splice(index, 1);
-
       this.announcer.announce(`Removed ${gender}`);
     }
   }
-
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.genders.push(event.option.viewValue);
@@ -100,14 +92,11 @@ export class UserFormComponent implements OnInit {
     this.allGenders=[...resultArray]
     this.genderInput.nativeElement.value = '';
     this.genderCtrl.setValue(null);
+
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.allGenders.filter(fruit => fruit.toLowerCase().includes(filterValue));
-  }
   addFreshGenderFields() {
+    this.genders=[]
   }
 
 }
