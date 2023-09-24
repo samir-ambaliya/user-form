@@ -6,16 +6,26 @@ import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 export class TemplateSwitchDirective {
 
   @Input() set appTemplateSwitch(templateName: string) {
-    
-    this.viewContainer.clear();
-    if (templateName === 'employee' || templateName === 'company' || templateName === 'customer') {
+    console.log(templateName)
+    if (this.caseArray.includes(templateName)) {
       this.viewContainer.createEmbeddedView(this.templateRef);
+    }else{
+      this.viewContainer.clear();
     }
   }
+
+  // @Input() set myStructuralDirective(value: string) {
+  //   if (this.caseArray.includes(value)) {
+  //     this.viewContainer.createEmbeddedView(this.templateRef);
+  //   } else {
+  //     this.viewContainer.clear();
+  //   }
+  // }
 
   constructor(
     private templateRef: TemplateRef<any>,
     private viewContainer: ViewContainerRef
   ) { }
+  private caseArray = ['employee', 'company', 'customer'];
 
 }

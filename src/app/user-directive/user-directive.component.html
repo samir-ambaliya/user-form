@@ -1,29 +1,29 @@
-<ng-container *ngFor="let switchCase of switchCases">
-    <span *appTemplateSwitch="switchCase">
-        <!-- Specify your common content here -->
-        <ng-container
-            [ngTemplateOutlet]="switchCase === 'employee' ? employeeTemplate : switchCase === 'company' ? companyTemplate : customerTemplate">
-            <!-- [ngTemplateOutletContext]="{ $implicit: { id: disRow[disCol.fieldName] } }" -->
-
+<!-- <ng-container *ngFor="let switchCase of switchCases">
+    <span *appTemplateSwitch="switchCase"> -->
+<!-- Specify your common content here -->
+<!-- <ng-container
+            [ngTemplateOutlet]="switchCase === 'employee' ? employeeTemplate : switchCase === 'company' ? companyTemplate : customerTemplate"> -->
+<!-- [ngTemplateOutletContext]="{ $implicit: { id: disRow[disCol.fieldName] } }" -->
+<!-- 
         </ng-container>
     </span>
-</ng-container>
+</ng-container> -->
 
-<ng-template #employeeTemplate let-disRow>
-    <!-- Your employee template content here -->
+<div *appTemplateSwitch="'employee'">
     <p>employeeTemplate</p>
-</ng-template>
+</div>
 
-<ng-template #companyTemplate let-disRow>
-    <!-- Your company template content here -->
+<div *appTemplateSwitch="'company'">
     <p>companyTemplate</p>
+</div>
 
-</ng-template>
+<div *appTemplateSwitch="'customer'">
+    <p>This is customer content.</p>
+</div>
 
-<ng-template #customerTemplate let-disRow>
-    <!-- Your customer template content here -->
-    <p>customerTemplate</p>
-</ng-template>
+<!-- <ng-template #customerTemplate let-disRow>
+        <p>customerTemplate</p>
+    </ng-template> -->
 
 
 <!-- 
