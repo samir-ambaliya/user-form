@@ -55,10 +55,10 @@
                                 </button>
                             </mat-chip-row>
                         </mat-chip-grid>
-                        <input formControlName="gender" [placeholder]="genderSelected ? '' : 'Select Gender'"
-                            (focus)="genderSelected = true" (blur)="genderSelected = false" #genderInput
-                            [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
-                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        <input formControlName="gender" id="genderId"
+                            [placeholder]="genderSelected ? '' : 'Select Gender'" (focus)="genderSelected = true"
+                            (blur)="genderSelected = false" #genderInput [matChipInputFor]="chipGrid"
+                            [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                             (matChipInputTokenEnd)="add($event,i)" />
                         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
                             <mat-option *ngFor="let gender of allGenders " [value]="gender">

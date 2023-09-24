@@ -15,7 +15,6 @@ export class UserFormComponent implements OnInit {
   form!: FormGroup;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   genderCtrl = new FormControl('');
-  filteredGenders: Observable<string[]> | undefined;
   genderSelected: boolean = false;
   genders: string[] = [];
   allGenders: string[] = ['Female','Other' ,'Male'];
@@ -36,14 +35,48 @@ export class UserFormComponent implements OnInit {
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', Validators.required], 
-       gender: ['']
+      gender: ['']
     });
   }
 
+  // addEntry() {
+  //   const entriesArray = this.form.get('entries') as FormArray;
+  //   entriesArray.push(this.createEntry());
+  //   }
   addEntry() {
     const entriesArray = this.form.get('entries') as FormArray;
-    entriesArray.push(this.createEntry());
-    }
+    // entriesArray.controls.forEach((control) => {
+    //   if (control instanceof FormGroup) {
+    //     control.reset(); // Reset each FormGroup
+    //   }
+    // });
+    // console.log('entriesArray::',entriesArray,"this.createEntry();",this.createEntry())
+    const newEntry = this.createEntry(); 
+    // const reseetForm =this.form.reset()
+    // console.log(reseetForm,this.createEntry,newEntry.reset())
+    // newEntry.reset()
+    entriesArray.push(newEntry);    
+    // Reset all fields to their initial values
+    // const newForm =newEntry.reset();
+  //   newEntry.get('name')?.setValue('');
+  //   newEntry.get('email')?.setValue('');
+  //   newEntry.get('phoneNumber')?.setValue('');
+  // newEntry.get('gender')?.setValue('');
+   // Clear individual input fields in the new form entry
+  //  const formGroupElement = document.getElementById('genderId');
+  //  console.log('formGroupElement',formGroupElement)
+  //  if (formGroupElement) {
+  //    formGroupElement.querySelectorAll('input').forEach(inputElement => {
+  //      inputElement.value = ''; // Clear the input value
+  //    });
+  //  }
+  // let newgender
+  // Object.keys(newEntry.controls).forEach(controlName => {
+  //   newgender= newEntry.get(controlName)?.setValue('');
+  // });     
+  }
+  
+  
 
   removeEntry(index: number) {
     const entriesArray = this.form.get('entries') as FormArray;
@@ -71,8 +104,7 @@ export class UserFormComponent implements OnInit {
       const genderFormControl = this.entriesControls[index].get('gender') as FormControl;
       const updatedGenderArray = [...genderFormControl.value, value];
       genderFormControl.setValue(updatedGenderArray);
-    }
-  
+    } 
     event.chipInput!.clear();
     this.genderCtrl.setValue(null);
   }
