@@ -8,28 +8,41 @@
         </ng-container>
     </span>
 </ng-container> -->
+<div class="d-flex">
+    <div>
 
-<div *appTemplateSwitch="'employee'">
-    <p>employeeTemplate</p>
-</div>
+        <div *appTemplateSwitch="'employee'">
+            <p>employeeTemplate</p>
+        </div>
 
-<div *appTemplateSwitch="'company'">
-    <p>companyTemplate</p>
-</div>
+        <div *appTemplateSwitch="'company'">
+            <p>companyTemplate</p>
+        </div>
 
-<div *appTemplateSwitch="'customer'">
-    <p>This is customer content.</p>
-</div>
+        <div *appTemplateSwitch="'customer'">
+            <p>This is customer content.</p>
+        </div>
+        <div *appUserString="'hi!'"></div>
+    </div>
 
-<!-- <ng-template #customerTemplate let-disRow>
+    <!-- <ng-template #customerTemplate let-disRow>
         <p>customerTemplate</p>
     </ng-template> -->
-
-
-<!-- 
+    <!-- 
     <p *appUserString="'hi!';type:'again'">
         Start editing to see some magic happen :)
     </p>
     <div *appUserString="'<div>hi</div>!'"></div> -->
 
-<div *appUserString="'hi!'"></div>
+
+    <div class="user-packages">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">User Packages</h5>
+                <p class="card-text">open your package</p>
+                <button href="#" class=" btn btn-warning card-link" (click)="openModal()">Package link</button>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+    </div>
+</div>

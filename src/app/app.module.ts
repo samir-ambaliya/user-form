@@ -15,6 +15,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { UserStringDirective } from './user-form/custom-directive/user-string.directive';
 import { TemplateSwitchDirective } from './user-form/custom-directive/template-switch.directive';
 import { UserDirectiveComponent } from './user-directive/user-directive.component';
+import { NgNeatDialogComponent } from './user-packages/ng-neat-dialog/ng-neat-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { UserDirectiveComponent } from './user-directive/user-directive.componen
     UserFormComponent,
     UserStringDirective,
     TemplateSwitchDirective,
-    UserDirectiveComponent
+    UserDirectiveComponent,
+    NgNeatDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,7 @@ import { UserDirectiveComponent } from './user-directive/user-directive.componen
     MatInputModule,
     BrowserAnimationsModule,
     MatIconModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
