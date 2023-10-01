@@ -9,7 +9,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.css']
+  styleUrls: ['./user-form.component.css'],
 })
 export class UserFormComponent implements OnInit {
   form!: FormGroup;
@@ -17,7 +17,8 @@ export class UserFormComponent implements OnInit {
   genderCtrl = new FormControl('');
   genderSelected: boolean = false;
   genders: string[] = [];
-  allGenders: string[] = ['Female','Other' ,'Male'];
+  copyGender:string[]=[]
+  allGenders: string[] = ['Other' ,'Male','Female'];
   @ViewChild('genderInput') genderInput!: ElementRef<HTMLInputElement>;
    announcer = inject(LiveAnnouncer);
 
@@ -39,41 +40,12 @@ export class UserFormComponent implements OnInit {
     });
   }
 
-  // addEntry() {
-  //   const entriesArray = this.form.get('entries') as FormArray;
-  //   entriesArray.push(this.createEntry());
-  //   }
   addEntry() {
+    
     const entriesArray = this.form.get('entries') as FormArray;
-    // entriesArray.controls.forEach((control) => {
-    //   if (control instanceof FormGroup) {
-    //     control.reset(); // Reset each FormGroup
-    //   }
-    // });
-    // console.log('entriesArray::',entriesArray,"this.createEntry();",this.createEntry())
     const newEntry = this.createEntry(); 
-    // const reseetForm =this.form.reset()
-    // console.log(reseetForm,this.createEntry,newEntry.reset())
-    // newEntry.reset()
-    entriesArray.push(newEntry);    
-    // Reset all fields to their initial values
-    // const newForm =newEntry.reset();
-  //   newEntry.get('name')?.setValue('');
-  //   newEntry.get('email')?.setValue('');
-  //   newEntry.get('phoneNumber')?.setValue('');
-  // newEntry.get('gender')?.setValue('');
-   // Clear individual input fields in the new form entry
-  //  const formGroupElement = document.getElementById('genderId');
-  //  console.log('formGroupElement',formGroupElement)
-  //  if (formGroupElement) {
-  //    formGroupElement.querySelectorAll('input').forEach(inputElement => {
-  //      inputElement.value = ''; // Clear the input value
-  //    });
-  //  }
-  // let newgender
-  // Object.keys(newEntry.controls).forEach(controlName => {
-  //   newgender= newEntry.get(controlName)?.setValue('');
-  // });     
+    entriesArray.push(newEntry);
+               
   }
   
   
@@ -97,10 +69,9 @@ export class UserFormComponent implements OnInit {
    
   }
   add(event: MatChipInputEvent, index: number): void {
-    const value = (event.value || '').trim();
-  
+    const value = (event.value || '').trim();  
     if (value) {
-      this.genders.push(value);  
+      // this.genders.push(value);  
       const genderFormControl = this.entriesControls[index].get('gender') as FormControl;
       const updatedGenderArray = [...genderFormControl.value, value];
       genderFormControl.setValue(updatedGenderArray);

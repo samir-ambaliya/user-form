@@ -16,6 +16,7 @@ import { UserStringDirective } from './user-form/custom-directive/user-string.di
 import { TemplateSwitchDirective } from './user-form/custom-directive/template-switch.directive';
 import { UserDirectiveComponent } from './user-directive/user-directive.component';
 import { NgNeatDialogComponent } from './user-packages/ng-neat-dialog/ng-neat-dialog.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -36,9 +37,11 @@ import { NgNeatDialogComponent } from './user-packages/ng-neat-dialog/ng-neat-di
     MatInputModule,
     BrowserAnimationsModule,
     MatIconModule,
+    MatSelectModule,
     MatAutocompleteModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  // exports: [MatSelectModule]
 })
 export class AppModule { }
